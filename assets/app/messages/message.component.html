@@ -1,0 +1,15 @@
+<article class="panel panel-default">
+    <input type="text" [(ngModel)]="message.content">
+    <div class="panel-body">
+        {{ message.content }}
+    </div>
+    <footer class="panel-footer">
+        <div class="author">
+            {{ message.username }}
+        </div>
+        <div class="config">
+            <a (click)="changeElement()">Edit</a>
+            <a (click)="deleteMessage(message)">Delete</a>
+        </div>
+    </footer>
+</article>
