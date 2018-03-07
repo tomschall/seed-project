@@ -26,11 +26,11 @@ export class MessageComponent {
 
     constructor(private messageService: MessageService) {}
 
-    changeElement() {
+    onEdit() {
         this.editClicked.emit('Anderer Wert kommt hier...abcdefg');
     }
 
-    deleteMessage(message: Message) {
-        this.messageService.deleteMessage(message);
+    onDelete() {
+        this.messageService.deleteMessage(this.message);
     }
 }
