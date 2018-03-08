@@ -1,21 +1,20 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
 
-import { AppComponent } from "./app.component";
-import { MessageComponent } from './messages/message.component';
-import { MessageListComponent } from './messages/message-list.component';
-import { MessagesComponent } from './messages/messages.component';
-import { AuthenticationComponent } from './auth/authentication.component';
-
-import { SignupComponent } from './auth/signup.component';
-import { SigninComponent } from './auth/signin.component';
-import { LogoutComponent } from './auth/logout.component';
-import { HeaderComponent } from './header.component';
-import { MessageService } from './messages/message.service';
-import { MessageInputComponent } from './messages/message-input.component';
-
+import { AppComponent } from './app.component';
 import { routing } from './app.routing';
+import { AuthenticationComponent } from './auth/authentication.component';
+import { LogoutComponent } from './auth/logout.component';
+import { SigninComponent } from './auth/signin.component';
+import { SignupComponent } from './auth/signup.component';
+import { HeaderComponent } from './header.component';
+import { MessageInputComponent } from './messages/message-input.component';
+import { MessageListComponent } from './messages/message-list.component';
+import { MessageComponent } from './messages/message.component';
+import { MessageService } from './messages/message.service';
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
     declarations: [
@@ -30,8 +29,16 @@ import { routing } from './app.routing';
         SignupComponent,
         SigninComponent
     ],
-    imports: [BrowserModule, FormsModule, routing, ReactiveFormsModule],
-    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule, 
+        FormsModule, 
+        routing, 
+        ReactiveFormsModule, 
+        HttpModule
+    ],
+    bootstrap: [
+        AppComponent
+    ],
     providers: [
         MessageService
     ]

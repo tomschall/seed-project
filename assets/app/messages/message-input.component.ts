@@ -11,7 +11,11 @@ export class MessageInputComponent {
     constructor(private messageService: MessageService) {}
 
     onSubmit(form: NgForm) {
-        this.messageService.addMessage(new Message(form.value.content, 'Tom'));
+        this.messageService.addMessage(new Message(form.value.content, 'Tom'))
+            .subscribe(
+                data => console.log(data),
+                error => console.log(error)
+            );
         form.resetForm();
     }
 
