@@ -21,10 +21,4 @@ export class MessageListComponent implements OnInit {
                 }
             );
     }
-
-    changeData(event) {
-        this.messages.forEach(element => {
-            element.content = event;
-        });
-    }
 }
