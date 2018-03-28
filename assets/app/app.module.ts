@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
+import { AuthService } from './auth/auth.service';
 import { AuthenticationComponent } from './auth/authentication.component';
 import { LogoutComponent } from './auth/logout.component';
 import { SigninComponent } from './auth/signin.component';
@@ -40,7 +41,8 @@ import { MessagesComponent } from './messages/messages.component';
         AppComponent
     ],
     providers: [
-        MessageService
+        MessageService,
+        AuthService
     ]
 })
 export class AppModule {

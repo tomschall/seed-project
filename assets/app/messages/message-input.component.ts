@@ -19,14 +19,15 @@ export class MessageInputComponent implements OnInit {
                 .subscribe(
                     result => console.log(result)
                 );
+            // mit 'this.message = null' wird nur die Referenz auf das Objekt gelöscht
             this.message = null;
         } else {
             const msg = new Message(form.value.content, 'Tom');
             this.messageService.addMessage(msg)
-            .subscribe(
-                data => console.log(data),
-                error => console.log(error)
-            );
+                .subscribe(
+                    data => console.log(data),
+                    error => console.log(error)
+                );
         }
         form.resetForm();
     }

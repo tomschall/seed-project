@@ -14,11 +14,17 @@ export class MessageService {
     addMessage(message: Message) {
         const body = JSON.stringify(message);
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post('http://localhost:3000/message', body, {headers: headers})
+        const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
+        return this.http.post('http://localhost:3000/message' + token, body, {headers: headers})
             .map((response: Response) => {
                 const result = response.json();
-                const message = new Message(result.obj.content, 'Tom', result.obj._id, null);
+                const message = new Message(
+                    result.obj.content, 
+                    result.firstName, 
+                    result.obj._id, 
+                    result.obj.user);
                 this.messages.push(message);
+                console.log(this.messages);
                 return message;
             })
             .catch((error: Response) => Observable.throw(error.json()));
@@ -31,7 +37,11 @@ export class MessageService {
                 const messages = response.json().obj;
                 let transformedMessages: Message[] = [];
                 for (let message of messages) {
-                    transformedMessages.push(new Message(message.content, 'Dummy', message._id, null));
+                    transformedMessages.push(new Message(
+                        message.content, 
+                        message.user.firstName, 
+                        message._id, 
+                        message.user._id));
                 }
                 this.messages = transformedMessages;
                 console.log(this.messages);
@@ -43,14 +53,16 @@ export class MessageService {
     updateMessage(message: Message) {
         const body = JSON.stringify(message);
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.patch('http://localhost:3000/message/' + message.messageId, body, {headers: headers})
+        const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
+        return this.http.patch('http://localhost:3000/message/' + message.messageId + token, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
 
     deleteMessage(message: Message) {
         this.messages.splice(this.messages.indexOf(message), 1);
-        return this.http.delete('http://localhost:3000/message/' + message.messageId)
+        const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
+        return this.http.delete('http://localhost:3000/message/' + message.messageId + token)
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
