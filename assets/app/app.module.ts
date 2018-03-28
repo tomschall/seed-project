@@ -1,3 +1,5 @@
+import { ErrorService } from './errors/error.service';
+import { ErrorComponent } from './errors/error.component';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -28,7 +30,8 @@ import { MessagesComponent } from './messages/messages.component';
         HeaderComponent,
         LogoutComponent,
         SignupComponent,
-        SigninComponent
+        SigninComponent,
+        ErrorComponent
     ],
     imports: [
         BrowserModule, 
@@ -42,7 +45,8 @@ import { MessagesComponent } from './messages/messages.component';
     ],
     providers: [
         MessageService,
-        AuthService
+        AuthService,
+        ErrorService
     ]
 })
 export class AppModule {
