@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
-import { AuthModule } from './auth/auth.module';
 import { AuthService } from './auth/auth.service';
 import { AuthenticationComponent } from './auth/authentication.component';
 import { ErrorComponent } from './errors/error.component';
@@ -23,8 +22,7 @@ import { MessageModule } from './messages/message.module';
         BrowserModule, 
         routing, 
         HttpModule,
-        MessageModule,
-        AuthModule
+        MessageModule
     ],
     bootstrap: [
         AppComponent
